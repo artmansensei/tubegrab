@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TubeGrab — YouTube Downloader</title>
+  <meta name="description" content="Download YouTube videos in any quality — up to 8K — or extract MP3 audio." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23ff3d5a'/%3E%3Cpath d='M26 20l20 12-20 12z' fill='white'/%3E%3C/svg%3E" />
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="theme-color" content="#ff3d5a" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="TubeGrab" />
+  <link rel="apple-touch-icon" href="/icon-192.png" />
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <div class="glow glow-a"></div>
+  <div class="glow glow-b"></div>
+  <div class="noise"></div>
+
+  <main class="wrap">
+    <header class="topbar">
+      <a class="brand" href="/">
+        <span class="logo">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg>
+        </span>
+        <span>Tube<em>Grab</em></span>
+      </a>
+      <span class="pill"><span class="dot"></span> runs locally</span>
+    </header>
+
+    <section class="hero">
+      <h1>Any video.<br /><span class="grad">Any quality.</span></h1>
+      <p class="sub">Paste a YouTube link, pick a resolution, download. Video up to 8K or audio as MP3.</p>
+
+      <form id="fetchForm" class="searchbar" autocomplete="off">
+        <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M10 13a5 5 0 0 0 7.07 0l2.83-2.83a5 5 0 0 0-7.07-7.07L11.4 4.53" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          <path d="M14 11a5 5 0 0 0-7.07 0L4.1 13.83a5 5 0 0 0 7.07 7.07l1.42-1.42" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+        <input id="url" type="text" inputmode="url" aria-label="YouTube video URL" placeholder="https://www.youtube.com/watch?v=…" spellcheck="false" required />
+        <button type="button" id="pasteBtn" class="btn ghost">Paste</button>
+        <button type="submit" id="fetchBtn" class="btn primary">
+          <span class="btn-label">Fetch</span>
+          <span class="spinner" hidden></span>
+        </button>
+      </form>
+      <p class="hint">Videos, Shorts and youtu.be links are supported.</p>
+    </section>
+
+    <section id="result" class="card result hidden" aria-live="polite"></section>
+
+    <section class="downloads">
+      <div class="section-head">
+        <h2>Downloads</h2>
+        <button id="clearBtn" class="link hidden" type="button">Clear finished</button>
+      </div>
+      <div id="jobs" class="jobs"></div>
+      <div id="emptyJobs" class="empty">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>No downloads yet — paste a link above to get started.</span>
+      </div>
+    </section>
+
+    <footer class="footer">
+      Powered by yt-dlp &amp; ffmpeg · Download only content you have the rights to.
+    </footer>
+  </main>
+
+  <div id="toasts" class="toasts" aria-live="assertive"></div>
+  <script src="/app.js"></script>
+</body>
+</html>

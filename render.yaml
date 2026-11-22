@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: tubegrab
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: DOWNLOAD_DIR
+        value: /tmp/downloads
+      - key: HOST
+        value: 0.0.0.0
+    healthCheckPath: /api/health
+    autoDeploy: true
