@@ -1,0 +1,13 @@
+.git
+.gitignore
+.venv
+__pycache__
+*.pyc
+downloads
+tubegrab-downloads
+ytdl-downloads
+*.mp4
+*.mp3
+README_HF.md
+uploads
+node_modules
